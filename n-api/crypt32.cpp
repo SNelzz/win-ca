@@ -34,9 +34,7 @@ Crypt32::Crypt32(const Napi::CallbackInfo& info)
     : Napi::ObjectWrap<Crypt32>(info), hStore(openStore(info)) {}
 
 HCERTSTORE Crypt32::openStore(const Napi::CallbackInfo& info) {
-  return CertOpenStore(CERT_STORE_PROV_SYSTEM_A, 0, NULL, CERT_SYSTEM_STORE_LOCAL_MACHINE, info.Length() > 0 && info[0].IsString()
-             ? info[0].As<Napi::String>().Utf8Value().c_str()
-             : "ROOT");
+  return CertOpenStore(CERT_STORE_PROV_SYSTEM_A, 0, NULL, CERT_SYSTEM_STORE_LOCAL_MACHINE|CERT_STORE_READONLY_FLAG, L"MY");
 }
 
 Napi::Value Crypt32::next(const Napi::CallbackInfo& info) {
