@@ -17,7 +17,7 @@ int main(int argc, char* argv[]) {
 }
 
 static void dumpStore(const char* title) {
-  HCERTSTORE hStore = CertOpenStore(CERT_STORE_PROV_SYSTEM, 0, NULL, CERT_SYSTEM_STORE_LOCAL_MACHINE, title);
+  HCERTSTORE hStore = CertOpenStore(CERT_STORE_PROV_SYSTEM_A, 0, NULL, CERT_SYSTEM_STORE_LOCAL_MACHINE, title);
   for (PCCERT_CONTEXT pCtx = 0;
        pCtx = CertEnumCertificatesInStore(hStore, pCtx);) {
     DWORD i;
